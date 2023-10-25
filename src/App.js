@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+// import logo from './logo.svg';
+import "./App.css";
+import React, { useEffect, useState } from "react";
+import { Data } from "./Data";
 
 function App() {
+  const [data, setdata] = useState(Data);
+  // useEffect(()=>{
+  //           fetch(`${Data}`).then(res=>res.json()).then(d=>setdata(d));
+
+  // },[data]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="background">
+      <div className="mobile_outter">
+        <div className="inner_">
+          <p>Today's Birthday {data.length}</p>
+          {data &&
+            data.map((e) => {
+              return (
+                <section key={e.title}>
+                  <img src={e.img} alt="" />
+                  <h3>{e.title}</h3>
+                </section>
+              );
+            })}
+          <button
+            className="clear"
+            onClick={() => {
+              setdata([]);
+            }}
+          >
+            Clear
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
-
 export default App;
